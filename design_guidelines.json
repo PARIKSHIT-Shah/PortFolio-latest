@@ -1,0 +1,126 @@
+{
+    "theme": {
+        "archetype": "Archetype 5 (Luxury) & Archetype 4 (Swiss & High-Contrast) Hybrid",
+        "description": "An elegant, minimal, and sophisticated dark-mode 3D portfolio. It uses deep blacks, cinematic lighting, and frosty glass textures to highlight the 3D elements and typography. Designed for a high-end, product-based developer portfolio.",
+        "mode": "dark"
+    },
+    "typography": {
+        "primary_heading": {
+            "family": "'Outfit', sans-serif",
+            "style": "Modern, elegant, geometric. Used for large titles, hero text, and section headers.",
+            "weight_usage": "Light (300) for elegance, Medium (500) for emphasis."
+        },
+        "secondary_body": {
+            "family": "'Manrope', sans-serif",
+            "style": "Clean, highly legible, tech-forward.",
+            "weight_usage": "Regular (400) for paragraphs, SemiBold (600) for UI labels."
+        },
+        "rules": [
+            "Use tracking-tight for H1 and H2 (-0.02em or -0.04em).",
+            "Avoid Inter or Roboto completely.",
+            "Never center-align long paragraphs. Keep text blocks flush left for a sophisticated editorial feel."
+        ]
+    },
+    "color_palette": {
+        "background": {
+            "primary": "#050505",
+            "description": "Deep obsidian black. Use this as the main body background."
+        },
+        "surface": {
+            "glass": "rgba(255, 255, 255, 0.03)",
+            "solid": "#111111",
+            "border": "rgba(255, 255, 255, 0.08)",
+            "description": "Use glassmorphism with heavy blur (backdrop-blur-xl) for cards and headers."
+        },
+        "text": {
+            "primary": "#FFFFFF",
+            "secondary": "#A1A1AA",
+            "muted": "#71717A",
+            "description": "Ensure high contrast. Primary text should glow against the dark background."
+        },
+        "accent": {
+            "primary": "#EAE6D7",
+            "secondary": "#D4AF37",
+            "description": "Warm bone/silver for primary accents (buttons, active states). Muted gold for subtle highlights (like glowing 3D objects)."
+        }
+    },
+    "layout_strategy": {
+        "spacing": "Generous. Use p-8 to p-16 for containers. Let the 3D background breathe.",
+        "grids": "Use Mode A (Tetris Grid) for Projects and About sections. Mode B (Control Room) for Skills.",
+        "surfaces": "Apply Glassmorphism (Crystal variant) for sticky headers and project cards. border-white/10 and backdrop-blur-2xl are mandatory."
+    },
+    "components_blueprint": {
+        "CustomCursor": {
+            "type": "Magnetic Trail Cursor",
+            "logic": "Use Framer Motion to create a custom cursor. Track mouse coordinates, store the last 15 positions in an array, and map them to small motion.div circles that fade out (trail). Snaps to elements with a '.magnetic' class, growing in size and changing color/blend-mode to 'exclusion' or 'screen'.",
+            "test_id": "custom-magnetic-cursor"
+        },
+        "Hero": {
+            "layout": "Full viewport height. Massive typography centered or bottom-left aligned.",
+            "content": "Name: Parikshit Shah. Role: Aspiring Full-Stack & AI Developer.",
+            "3D_integration": "A large, slowly rotating abstract 3D object (like an Icosahedron or a Torus Knot) placed centrally in the background. Use @react-three/drei's MeshTransmissionMaterial to make it look like refractive frosted glass. The background behind it should be absolute black (#050505).",
+            "test_id": "hero-section"
+        },
+        "About": {
+            "layout": "2-column asymmetric grid (md:grid-cols-12). Text takes 7 columns, 3D/Visual takes 5 columns.",
+            "content": "Personal introduction focusing on the AI/ML journey at Techno India University and passion for web development.",
+            "visual": "A floating 3D avatar/model or a sleek geometric arrangement representing 'AI/ML' (e.g., connected nodes or glowing particles).",
+            "test_id": "about-section"
+        },
+        "Skills": {
+            "layout": "Bento Grid ('Tetris' style). A mix of small squares and wide rectangles.",
+            "content": "Tech stack grouped logically: Languages (JS, Python, Java, C++), Frontend (React, HTML, CSS), Backend (Node, Express, DBs), Tools (Git, LLM, APIs).",
+            "interaction": "Each bento card features a 3D tilt effect on hover using Framer Motion (useSpring). Add subtle inner shadows to the glass cards.",
+            "test_id": "skills-section"
+        },
+        "Projects": {
+            "layout": "Vertical scroll with overlapping sticky cards, or a 3D horizontal carousel.",
+            "content": "NIDS-ALERT, My Eco-trip, moddynotes, Currency Converter, E-shop Flipkart clone, FitTech.",
+            "visual": "Each project card is a glassmorphic container. Use the provided abstract 3D image URLs as placeholder thumbnails for the projects.",
+            "test_id": "projects-section"
+        },
+        "Education_and_Achievements": {
+            "layout": "Minimalist vertical timeline on the left, details on the right.",
+            "content": "Techno India University, Bishop George Mission School. Internships (Deloitte, AWS, Techno Billion AI) and Hackathons.",
+            "test_id": "timeline-section"
+        },
+        "Contact": {
+            "layout": "Massive footer layout (py-32).",
+            "content": "Email, Phone, GitHub, LinkedIn. Large typography for 'Let's Build Something'.",
+            "interaction": "Social links MUST have the '.magnetic' class for the cursor to snap to them.",
+            "test_id": "contact-section"
+        }
+    },
+    "3d_scene_concepts": {
+        "libraries_required": [
+            "three",
+            "@react-three/fiber",
+            "@react-three/drei",
+            "framer-motion"
+        ],
+        "hero_canvas": "A `<Canvas>` that sits behind the Hero text (`z-index: -1`, `absolute`, `inset-0`). Use `<Environment preset='city'>` and a `<Float>` wrapper around a `<TorusKnot>` or `<Icosahedron>` with a `<MeshTransmissionMaterial>` (thickness: 1, roughness: 0.1, transmission: 1, ior: 1.5).",
+        "particles": "Add `<Points>` or `<Sparkles>` from drei to create a subtle ambient floating dust effect across the dark background to enhance the luxury feel."
+    },
+    "motion_and_animation": {
+        "scrolling": "MANDATORY: Use `lenis` for smooth, weighted momentum scrolling.",
+        "reveals": "Use `framer-motion` for `whileInView` animations. Elements should slightly translate Y (e.g., 40px) and fade in as they enter the viewport.",
+        "hover_states": "Interactive elements should scale slightly (0.98 or 1.05) and increase their border opacity."
+    },
+    "media_urls": {
+        "project_thumbnails": [
+            "https://images.unsplash.com/photo-1710438399422-2fca27686bcd?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAxODF8MHwxfHNlYXJjaHwxfHxkYXJrJTIwbWluaW1hbCUyMGFic3RyYWN0JTIwM2QlMjBzaGFwZXxlbnwwfHx8fDE3ODI4OTg0OTh8MA&ixlib=rb-4.1.0&q=85",
+            "https://images.unsplash.com/photo-1637946175559-22c4fe13fc54?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAxODF8MHwxfHNlYXJjaHw0fHxkYXJrJTIwbWluaW1hbCUyMGFic3RyYWN0JTIwM2QlMjBzaGFwZXxlbnwwfHx8fDE3ODI4OTg0OTh8MA&ixlib=rb-4.1.0&q=85",
+            "https://images.unsplash.com/photo-1622737133809-d95047b9e673?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAxODF8MHwxfHNlYXJjaHwzfHxkYXJrJTIwbWluaW1hbCUyMGFic3RyYWN0JTIwM2QlMjBzaGFwZXxlbnwwfHx8fDE3ODI4OTg0OTh8MA&ixlib=rb-4.1.0&q=85",
+            "https://images.unsplash.com/photo-1678366633407-7f49da199a42?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAxODF8MHwxfHNlYXJjaHwyfHxkYXJrJTIwbWluaW1hbCUyMGFic3RyYWN0JTIwM2QlMjBzaGFwZXxlbnwwfHx8fDE3ODI4OTg0OTh8MA&ixlib=rb-4.1.0&q=85"
+        ]
+    },
+    "instructions_to_main_agent": [
+        "Install the required libraries: framer-motion, @react-three/fiber, @react-three/drei, three, lenis, lucide-react, react-icons.",
+        "Implement the Custom Magnetic Trail Cursor using framer-motion in a fixed top-level component that tracks mouse position and maintains an array of the last N positions for the trail.",
+        "Ensure all text remains strictly accessible against the dark background. No pure #000000; use #050505.",
+        "Use standard semantic HTML wrapped in React components for layouts. You don't need Shadcn for this purely creative portfolio, rely on raw Tailwind CSS for exact control over glassmorphism and grids.",
+        "For the 3D scene, ensure the Canvas doesn't block pointer events for the UI layer underneath unless it is an interactive 3D element.",
+        "Add 'data-testid' to all key sections, project cards, buttons, and social links.",
+        "Apply fonts using next/font or Google Fonts import in the global CSS: @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&family=Outfit:wght@300;500;700&display=swap');"
+    ]
+}
